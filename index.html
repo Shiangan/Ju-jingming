@@ -92,8 +92,9 @@
         
         .time-timeline { margin: 50px 0; display: flex; flex-direction: column; align-items: center; gap: 30px; }
         .time-box { display: flex; align-items: center; gap: 25px; }
-        .time-tag { font-size: 20px; color: var(--gold-dark); width: 60px; font-weight: 700; text-align: right; }
-        .time-main { font-size: 30px; font-weight: 800; color: var(--ink); border-left: 2px solid var(--gold-light); padding-left: 25px; line-height: 1; }
+        /* 修正文字對齊：讓三字對齊 */
+        .time-tag { font-size: 20px; color: var(--gold-dark); width: 80px; font-weight: 700; text-align: center; letter-spacing: 2px; }
+        .time-main { font-size: 30px; font-weight: 800; color: var(--ink); border-left: 2px solid var(--gold-light); padding-left: 25px; line-height: 1; min-width: 120px; }
 
         .notice-card { 
             background: rgba(180, 151, 122, 0.05); border: 1px solid rgba(180, 151, 122, 0.15); 
@@ -235,7 +236,7 @@
                     <div class="notice-item">殯儀館內請勿說「再見」，以「平安」代替即可。</div>
                     <div class="notice-item">奠禮會場備有淨水，若有需要可以自行取用。</div>
                     <div class="notice-item">若因宗教信仰不方便持香，與工作人員示意即可。</div>
-                    <a href="https://maps.app.goo.gl/DGwhBVgpo1EBtrDt5?g_st=ic" target="_blank" class="btn-action btn-outline">📍 開啟地圖導航 (二殯)</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=台北市立殯儀館" target="_blank" class="btn-action btn-outline">📍 開啟地圖導航 (二殯)</a>
                 </div>
                 <a href="javascript:void(0)" class="btn-action btn-solid" onclick="addCal()">📅 加入手機行事曆</a>
             </section>
@@ -392,8 +393,13 @@
             window.location.href = `https://line.me/R/msg/text/?${encodeURIComponent(FULL_INFO)}`; 
         }
 
+        // 修正行事曆時間格式：20260318T082000 為上午 08:20
         function addCal() { 
-            window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=鞠景明先生追思奠禮&dates=20260318T08：0000/20260318T090000&details=${encodeURIComponent('台北市立殯儀館 景行樓 4F ［ 至愛一廳 ］')}&location=${encodeURIComponent('台北市立殯儀館')}`); 
+            const title = "鞠景明先生追思奠禮";
+            const dates = "20260318T082000/20260318T102000"; // 設為兩小時
+            const details = "地點：台北市立殯儀館 景行樓 4F ［ 至愛一廳 ］";
+            const location = "台北市立殯儀館";
+            window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${dates}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`); 
         }
     </script>
 </body>
